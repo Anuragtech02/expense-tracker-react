@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { Paper, IconButton } from "@material-ui/core";
 import styles from "../TransactionList/TransactionList.module.css";
+import { GlobalContext } from "../../context/GlobalState";
 
 export const Transaction = ({ transaction }) => {
+  const { deleteTransaction } = useContext(GlobalContext);
+
   const sign = transaction.amount > 0 ? "+" : "-";
 
   return (
@@ -16,7 +19,10 @@ export const Transaction = ({ transaction }) => {
           </h4>
         </div>
         <div className={styles.delete}>
-          <IconButton edge="end">
+          <IconButton
+            edge="end"
+            onClick={() => deleteTransaction(transaction.id)}
+          >
             <DeleteIcon />
           </IconButton>
         </div>
