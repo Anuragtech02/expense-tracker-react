@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+  Header,
+  Balance,
+  IncomeExpense,
+  TransactionList,
+  AddTransaction,
+} from "./components";
+import { GlobalProvider } from "./context/GlobalState";
+import { Paper } from "@material-ui/core";
+import styles from "./App.module.css";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GlobalProvider>
+      {() => (
+        <Paper className={styles.container}>
+          <Header />
+          <div className={styles.balance}>
+            <Balance />
+          </div>
+          <div className={styles.incomeExpense}>
+            <IncomeExpense />
+          </div>
+          <div className={styles.transactions}>
+            <TransactionList />
+          </div>
+          <div className={styles.addTransaction}>
+            <AddTransaction />
+          </div>
+        </Paper>
+      )}
+    </GlobalProvider>
   );
-}
+};
 
 export default App;
