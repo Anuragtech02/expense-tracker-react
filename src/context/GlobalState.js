@@ -2,8 +2,15 @@ import React, { createContext, useReducer } from "react";
 import AppReducer from "./AppReducer";
 
 //Initial State of the items
+let expenses;
+if (localStorage.getItem("expenses") === null) {
+  expenses = [];
+} else {
+  expenses = JSON.parse(localStorage.getItem("expenses"));
+}
+
 const initialState = {
-  transactions: [],
+  transactions: [...expenses],
 };
 
 // Create context
@@ -19,6 +26,10 @@ export const GlobalProvider = ({ children }) => {
       type: "DELETE_TRANSACTION",
       payload: id,
     });
+    const expenseIndex = expenses.indexOf(id);
+    expenses.splice(expenseIndex, 1);
+    localStorage.setItem("expenses", JSON.stringify(expenses));
+    console.log(expenseIndex);
   }
 
   function addTransaction(transaction) {
@@ -26,6 +37,9 @@ export const GlobalProvider = ({ children }) => {
       type: "ADD_TRANSACTION",
       payload: transaction,
     });
+    expenses.push(transaction);
+    localStorage.setItem("expenses", JSON.stringify(expenses));
+    console.log(expenses);
   }
 
   return (
