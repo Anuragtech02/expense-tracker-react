@@ -19,6 +19,8 @@ const AddTransaction = () => {
     };
 
     addTransaction(newTransaction);
+    setAmount(0);
+    setText("");
   };
 
   return (
@@ -29,6 +31,7 @@ const AddTransaction = () => {
         <div className={styles.part1}>
           <h4>Description</h4>
           <TextField
+            id="text-field-desc"
             className={styles.input}
             label="Enter Description"
             type="text"
@@ -43,6 +46,7 @@ const AddTransaction = () => {
           <h4>Amount</h4>
           <h4>(use '-' for debit and '+' for credit, ex. +200 )</h4>
           <TextField
+            id="text-field-amt"
             className={styles.input}
             label="Enter Amount"
             variant="outlined"
