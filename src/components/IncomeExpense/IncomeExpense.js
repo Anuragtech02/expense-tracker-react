@@ -13,10 +13,9 @@ const IncomeExpense = () => {
     .reduce((acc, item) => (acc += item), 0)
     .toFixed(2);
 
-  const expense = amounts
-    .filter((item) => item < 0)
-    .reduce((acc, item) => (acc += item), 0)
-    .toFixed(2);
+  const expense = Math.abs(
+    amounts.filter((item) => item < 0).reduce((acc, item) => (acc += item), 0)
+  ).toFixed(2);
 
   return (
     <Card className={styles.container}>
