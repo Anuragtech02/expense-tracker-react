@@ -27,10 +27,16 @@ const AddTransaction = () => {
     <div className={styles.container}>
       <h3>Add Transaction</h3>
       <div className={styles.underLine}></div>
-      <form className={styles.formControl} id="form">
+      <form
+        className={styles.formControl}
+        id="form"
+        autoComplete="off"
+        onSubmit={onSubmit}
+      >
         <div className={styles.part1}>
           <h4>Description</h4>
           <TextField
+            required
             id="text-field-desc"
             className={styles.input}
             label="Enter Description"
@@ -46,6 +52,7 @@ const AddTransaction = () => {
           <h4>Amount</h4>
           <h4>(use '-' for debit and '+' for credit, ex. +200 )</h4>
           <TextField
+            required
             id="text-field-amt"
             className={styles.input}
             label="Enter Amount"
@@ -61,7 +68,7 @@ const AddTransaction = () => {
           className={styles.submitBtn}
           variant="contained"
           color="secondary"
-          onClick={onSubmit}
+          type="submit"
         >
           Add Transaction
         </Button>
